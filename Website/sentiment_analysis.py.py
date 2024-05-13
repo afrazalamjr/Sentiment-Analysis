@@ -1,7 +1,3 @@
-from flask import Flask, render_template, request
-
-app = Flask(__name__)
-
 def classify_sentiment(sentence):
     positive_words = ["good", "great", "excellent", "happy", "joy", "love", "wonderful", "fantastic", "awesome", "amazing",
                   "beautiful", "delightful", "positive", "cheerful", "pleasure", "satisfying", "admire", "adore",
@@ -56,17 +52,17 @@ def classify_sentiment(sentence):
     else:
         return "Neutral"
 
+def main():
+    print("Welcome to the Sentiment Analysis tool!")
+    while True:
+        user_input = input("Enter a sentence (or type 'exit' to quit): ")
+        if user_input.lower() == "exit":
+            print("Exiting...")
+            break
+        sentiment = classify_sentiment(user_input)
+        print(f"The sentiment of \"{user_input}\" is: {sentiment}")
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+if __name__ == "__main__":
+    main()
 
-@app.route('/analyze', methods=['POST'])
-def analyze():
-    if request.method == 'POST':
-        sentence = request.form['sentence']
-        sentiment = classify_sentiment(sentence)
-        return render_template('result.html', sentence=sentence, sentiment=sentiment)
 
-if __name__ == '__main__':
-    app.run(debug=True)

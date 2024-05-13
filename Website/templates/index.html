@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <h1>Welcome to the Sentiment Analysis tool!</h1>
+    <form action="/analyze" method="post">
+        <label for="sentence">Enter a sentence:</label><br>
+        <input type="text" id="sentence" name="sentence"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
